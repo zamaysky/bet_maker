@@ -1,0 +1,40 @@
+services:
+#  thematic_analysis_backend:
+#    platform: linux/amd64
+#    container_name: thematic_analysis_backend
+#    build:
+#      dockerfile: Dockerfile
+#    environment:
+#      - PYTHONUNBUFFERED=1
+#      - TZ=Europe/Moscow
+#    restart: always
+#
+#  thematic_analysis_nginx:
+#    image: nginx:1.25.2-alpine
+#    container_name: thematic_analysis_nginx
+#    volumes:
+#      - ./nginx:/etc/nginx/conf.d
+#    ports:
+#      - 80:80
+#    depends_on:
+#      - thematic_analysis_backend
+  bet_maker_db:
+    image: postgres:15.4
+    shm_size: 256m
+    platform: linux/amd64
+    container_name: bet_maker_db
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 5432:5432
+    volumes:
+#      - ${DB_PATH}:/var/lib/postgresql/data
+      - ${BACKEND}/init_db_scripts/00_init.sh://docker-entrypoint-initdb.d/00_init.sh
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
