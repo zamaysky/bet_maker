@@ -1,9 +1,8 @@
-import asyncio
 import uuid
 
 import pytest
 
-from client import TestClient
+from .client import TestClient
 from schemas.bet import BetCreation, BetItem
 from schemas.bet_status import BetStatus
 from schemas.event import EventUpdate

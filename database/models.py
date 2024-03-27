@@ -33,4 +33,3 @@ class Bet(Base):
         onupdate=datetime.datetime.now(datetime.timezone.utc),
         nullable=False
     )
-
