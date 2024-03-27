@@ -6,7 +6,7 @@ from schemas.bet import BetItem, BetCreation
 from schemas.event import EventUpdate
 
 
-class TestClient(AsyncClient):
+class Client(AsyncClient):
     async def get_bets(self, params: dict | None = None) -> list[BetItem]:
         params = params or {}
         response = await self.get(

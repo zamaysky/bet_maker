@@ -2,7 +2,7 @@ import uuid
 
 import pytest
 
-from .client import TestClient
+from .client import Client
 from schemas.bet import BetCreation, BetItem
 from schemas.bet_status import BetStatus
 from schemas.event import EventUpdate
@@ -18,7 +18,7 @@ from schemas.event_status import EventStatus
         )
     ]
 )
-async def test_bet_creation(client: TestClient, bet_creation: BetCreation):
+async def test_bet_creation(client: Client, bet_creation: BetCreation):
     bet: BetItem = await client.create_bet(
         bet_creation=bet_creation
     )
@@ -36,7 +36,7 @@ async def test_bet_creation(client: TestClient, bet_creation: BetCreation):
         (uuid.uuid4().hex, 25),
     ]
 )
-async def test_get_bets(client: TestClient, event_id: str, expected_count: int) -> None:
+async def test_get_bets(client: Client, event_id: str, expected_count: int) -> None:
     for _ in range(expected_count):
         await client.create_bet(
             bet_creation=BetCreation(
@@ -62,7 +62,7 @@ async def test_get_bets(client: TestClient, event_id: str, expected_count: int) 
     ]
 )
 async def test_update_event(
-        client: TestClient,
+        client: Client,
         event_id: str,
         expected_count: int,
 ) -> None:
