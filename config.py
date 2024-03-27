@@ -7,6 +7,9 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_NAME: str
     DB_PASSWORD: str
+    APP_TITLE: str = 'BetMakerApi'
+    APP_HOST: str = '0.0.0.0'
+    APP_PORT: int = 8000
 
     @property
     def db_url_asyncpg(self) -> str:
@@ -19,3 +22,7 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+
+
