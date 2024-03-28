@@ -2,6 +2,7 @@ import pathlib
 import sys
 
 import pytest
+from httpx import ASGITransport
 
 from main import app
 
@@ -11,5 +12,9 @@ from .client import Client
 
 @pytest.fixture
 async def client():
-    async with Client(app=app, base_url="http://test", timeout=300) as ac:
+    async with Client(
+            transport=ASGITransport(app),
+            base_url="http://test",
+            timeout=300,
+    ) as ac:
         yield ac

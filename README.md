@@ -4,8 +4,8 @@
 
 ## Список сервисов
 
-- Python 3.12 + FastAPI
-- PostgreSQL 15
+- Python 3.11.8 + FastAPI
+- PostgreSQL 15.4
 
 Запустить проект:
 
@@ -20,5 +20,5 @@ http://localhost:8000/docs
 
 Запуск тестов
 ```bash
-docker exec -it bet_maker_backend pytest
+docker exec -it bet_maker_backend poetry run pytest
 ```

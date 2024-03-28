@@ -1,4 +1,4 @@
 #!/bin/bash
 
-alembic upgrade head
-python main.py
+poetry run alembic upgrade head
+poetry run python main.py
